@@ -5,7 +5,9 @@ var app = express();
 app.set("view engine", "ejs");
 app.use(express.urlencoded({extended: true}));
 
-app.get("/", function(req, res){
+
+
+app.post("/", function(req, res){
     res.send(req.body.ele1);
 });
 
