@@ -18,5 +18,9 @@
   "bugs": {
     "url": "https://github.com/PJMantoss/todo_list/issues"
   },
-  "homepage": "https://github.com/PJMantoss/todo_list#readme"
+  "homepage": "https://github.com/PJMantoss/todo_list#readme",
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "express": "^5.1.0"
+  }
 }
