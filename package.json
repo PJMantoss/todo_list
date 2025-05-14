@@ -1,0 +1,22 @@
+{
+  "name": "todo_list_proj",
+  "version": "1.0.0",
+  "description": "A ToDo list project using EJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PJMantoss/todo_list.git"
+  },
+  "keywords": [
+    "todo"
+  ],
+  "author": "PJ Mantoss",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PJMantoss/todo_list/issues"
+  },
+  "homepage": "https://github.com/PJMantoss/todo_list#readme"
+}
