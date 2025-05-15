@@ -37,3 +37,20 @@ input:checked+p {
     text-decoration: line-through;
     text-decoration-color: #a683e3;
 }
+
+input[type="checkbox"]{
+    margin: 1.25rem;
+}
+
+p {
+    margin: 0;
+    padding: 1.25rem;
+    font-size: 1.25rem;
+    font-weight: 200;
+    color: #00204a;
+}
+
+form {
+    text-align: center;
+    margin-left: 1.25rem;
+}
