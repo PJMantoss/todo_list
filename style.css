@@ -54,3 +54,42 @@ form {
     text-align: center;
     margin-left: 1.25rem;
 }
+
+button {
+    width: 3.13rem;
+    min-height: 3.13rem;
+    border-radius: 50%;
+    border-color: transparent;
+    background: #a683e3;
+    color: #fff;
+    font-size: 1.88rem;
+    padding-bottom: 0.38rem;
+    border-width: 0;
+}
+
+input[type="text"]{
+    text-align: center;
+    height: 3.75rem;
+    width: 19.56rem;
+    top: 0.63rem;
+    border: none;
+    background: transparent;
+    font-size: 1.25rem;
+    font-weight: 200;
+}
+
+input[type="text"]:focus{
+    outline: none;
+    box-shadow: inset 0 -0.19rem 0 0 #a683e3;
+}
+
+::placeholder {
+    color: grey;
+    opacity: 1;
+}
+
+footer {
+    /* color: white; */
+    color: rgba(0,0,0,0.5);
+    text-align: center;
+}
