@@ -1,0 +1,6 @@
+html {
+    background-color: #e4e9fd;
+    background-image: linear-gradient(65deg, #a683e3 50%, #e4e9fd 50%);
+    min-height: 62.5rem;
+    font-family: 'helvetica neue';
+}
