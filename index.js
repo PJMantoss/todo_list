@@ -7,7 +7,7 @@ app.use(express.urlencoded({extended: true}));
 
 var example = "working";
 app.get("/", function(req, res){
-    res.sender("list", {})
+    res.render("list", {exej: example})
 });
 
 app.post("/", function(req, res){
