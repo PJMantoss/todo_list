@@ -21,3 +21,19 @@ h1{
     background-color: #a683e3;
     text-align: center;
 } */
+
+.item {
+    min-height: 4.38rem;
+    display: flex;
+    align-items: center;
+    border-bottom: 0.06rem solid #f1f1f1;
+}
+
+.item:last-child {
+    border-bottom: 0;
+}
+
+input:checked+p {
+    text-decoration: line-through;
+    text-decoration-color: #a683e3;
+}
