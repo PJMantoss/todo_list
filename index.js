@@ -5,10 +5,13 @@ var app = express();
 app.set("view engine", "ejs");
 app.use(express.urlencoded({extended: true}));
 
-
+var example = "working";
+app.get("/", function(req, res){
+    res.sender("list", {})
+});
 
 app.post("/", function(req, res){
-    res.send(req.body.ele1);
+    console.log(req.body.ele1);
 });
 
 app.listen(8000, function(){
