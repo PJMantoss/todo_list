@@ -1,0 +1,23 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo List</title>
+</head>
+<body>
+    <div class="box">
+        <h1>To Do List</h1>
+    </div>
+
+    <div class="box">
+       <% for(var i=0; i<ejes.length; i++){ %>
+            <p><%= ejes[i] %></p>
+       <% } %>
+
+        <form action="/" method="POST">
+            <input type="text" name="ele1" id="" placeholder="Enter the task">
+            <button type="submit">+</button>
+        </form>
+    </div>
+</body>
+</html>
