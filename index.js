@@ -9,7 +9,7 @@ app.use(express.urlencoded({extended: true}));
 var items = [];
 var example = "working";
 app.get("/", function(req, res){
-    res.render("list", {exej: example})
+    res.render("list", {ejes: items})
 });
 
 app.post("/", function(req, res){
