@@ -105,6 +105,35 @@ app.get("/edit/:itemId", function(req, res) {
     }
 });
 
+// --- Update an Item ---
+app.post("/update/:itemId", function(req, res) {
+    const itemIdToUpdate = req.params.itemId;
+    const updatedText = req.body.updatedItemText;
+    const updatedPriority = req.body.updatedItemPriority;
+    const currentFilter = req.body.currentFilter;
+
+
+    if (!updatedText || updatedText.trim() === "") {
+        // Handle empty updated text - redirect back to edit page with an error
+        const item = items.find(it => it.id === itemIdToUpdate);
+        res.render("edit_item", {
+            item: item, // Send original item data back
+            priorities: priorities,
+            errorMessage: "Task text cannot be empty!",
+            currentFilter: currentFilter
+        });
+        return;
+    }
+
+    const itemIndex = items.findIndex(item => item.id === itemIdToUpdate);
+    if (itemIndex > -1) {
+        items[itemIndex].text = updatedText.trim();
+        items[itemIndex].priority = updatedPriority;
+    }
+    const redirectFilter = currentFilter && currentFilter !== "All" ? `?priority=${currentFilter}` : "";
+    res.redirect(`/${redirectFilter}`);
+});
+
 app.listen(8000, function(){
     console.log("Server Started!");
 });
