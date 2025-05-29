@@ -98,10 +98,8 @@ input[type="text"]:focus{
 }
 
 footer {
-    position: relative;
     color: white;
     /* color: rgba(0,0,0,0.5); */
     text-align: center;
     padding: 1.5rem 0;
-    bottom: 0;
 }
