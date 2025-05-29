@@ -44,8 +44,8 @@
                     <a href="/edit/<%= item.id %>?currentFilter=<%= selectedPriority %>" class="action-button edit-button">Edit</a>
                     
                     <form class="delete-form" action="/delete" method="POST" style="display: inline;">
-                        <input type="hidden" name="itemId" value="<%= item.id %>">
-                        <input type="hidden" name="currentFilter" value="<%= selectedPriority %>">
+                        <input type="hidden" name="itemId" id="itemId" value="<%= item.id %>">
+                        <input type="hidden" name="currentFilter" id="currentFilter" value="<%= selectedPriority %>">
                         <button type="submit" class="action-button delete-button">Delete</button>
                     </form>
                 </div>
@@ -55,12 +55,13 @@
             <p>Your ToDo list is empty. Add a new task below!</p>
         <% } %>
 
-        <form class="add-form" action="/add" method="POST"> <input type="text" name="ele1" placeholder="Enter the task" autocomplete="off" required> <select name="priority">
+        <form class="add-form" action="/add" method="POST"> <input type="text" name="ele1" placeholder="Enter the task" autocomplete="off" required> 
+            <select name="priority">
                 <% priorities.forEach(function(p) { %>
                     <option value="<%= p %>" <%= (typeof itemPriorityForForm !== 'undefined' && itemPriorityForForm === p) ? 'selected' : (p === 'Medium' ? 'selected' : '') %>><%= p %></option>
                 <% }); %>
             </select>
-            <input type="hidden" name="currentFilter" value="<%= selectedPriority %>">
+            <input type="hidden" name="currentFilter" id="currentFilter" value="<%= selectedPriority %>">
             <button type="submit">+</button>
         </form>
     </div>
