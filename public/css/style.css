@@ -20,8 +20,11 @@ h2{
 }
 
 .box {
-    max-width: 25rem;
+    display: flex;
+    flex-direction: column;
+    max-width: 70rem;
     margin: 3.13rem auto;
+    padding: .5rem 1.5rem;
     background: #fff;
     border-radius: 0.31rem;
     box-shadow: 0.31rem 0.31rem 0.94rem -0.31rem rgba(0,0,0,0.3);
@@ -55,7 +58,7 @@ input:checked+p {
 }
 
 input[type="checkbox"]{
-    margin: 1.25rem;
+    margin: 1rem 0.25rem;
 }
 
 p {
@@ -118,7 +121,7 @@ input[type="text"]:focus{
 }
 
 .delete-form {
-    display: inline; /* Keeps the form on the same line */
+    display: block;
 }
 
 .delete-button {
