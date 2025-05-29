@@ -13,6 +13,7 @@ app.get("/", function(req, res){
     res.render("list", {ejes: items})
 });
 
+//Adding new item to ToDo List
 app.post("/", function(req, res){
     var item = req.body.ele1;
     items.push(item);
