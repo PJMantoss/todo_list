@@ -104,7 +104,7 @@ input[type="text"]:focus{
     opacity: 1;
 }
 
-/* Optional: Some basic styling for the delete button and form */
+/* styling for the delete button and form */
 .item {
     display: flex;
     align-items: center;
@@ -122,7 +122,7 @@ input[type="text"]:focus{
 }
 
 .delete-button {
-    background-color: #ff4d4d;
+    background-color: #a683e3;
     color: white;
     border: none;
     padding: 5px 10px;
@@ -131,7 +131,7 @@ input[type="text"]:focus{
 }
 
 .delete-button:hover {
-    background-color: #cc0000;
+    background-color: #321c5a;
 }
 
 footer {
