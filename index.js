@@ -9,16 +9,61 @@ app.use(express.static('public'));
 
 var items = [];
 const priorities = ["High", "Medium", "Low"]; // Define available priorities
+
+// --- Helper function to get filtered items ---
+function getFilteredItems(currentItems, priorityFilter) {
+    if (priorityFilter && priorityFilter !== "All") {
+        return currentItems.filter(item => item.priority === priorityFilter);
+    }
+    return currentItems;
+}
+
 var example = "working";
-app.get("/", function(req, res){
-    res.render("list", {ejes: items})
+
+// app.get("/", function(req, res){
+//     res.render("list", {ejes: items})
+// });
+
+// --- Main page: Display items, handle filtering ---
+app.get("/", function(req, res) {
+    const priorityFilter = req.query.priority;
+    const errorMessage = req.query.error; // For displaying errors passed via redirect
+
+    let itemsToDisplay = getFilteredItems(items, priorityFilter);
+
+    res.render("list", {
+        ejes: itemsToDisplay,
+        priorities: priorities, // Pass priorities for the filter dropdown
+        selectedPriority: priorityFilter || "All", // For highlighting active filter
+        errorMessage: errorMessage === "emptyInput" ? "Task text cannot be empty!" : null,
+        infoMessage: req.query.info // For general messages like "Item added"
+    });
 });
 
-//Adding new item to ToDo List
-app.post("/", function(req, res){
-    var item = req.body.ele1;
-    items.push(item);
-    res.redirect("/");
+// app.post("/", function(req, res){
+//     var item = req.body.ele1;
+//     items.push(item);
+//     res.redirect("/");
+// });
+
+// --- Adding new item to ToDo List ---
+app.post("/add", function(req, res) { // Changed route to /add for clarity
+    const itemText = req.body.ele1;
+    const itemPriority = req.body.priority;
+
+    if (!itemText || itemText.trim() === "") {
+        // Option 1: Redirect with error query param (simpler for state management)
+        res.redirect("/?error=emptyInput");
+        return;
+    }
+
+    items.push({
+        id: Date.now().toString(), // Simple unique ID
+        text: itemText.trim(),
+        priority: itemPriority || "Medium" // Default priority if none selected
+    });
+    const currentFilter = req.body.currentFilter ? `?priority=${req.body.currentFilter}` : "";
+    res.redirect(`/${currentFilter}`); // Redirect, potentially to the filtered view
 });
 
 // Removing an item from the ToDo List
