@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css"> <title>Edit ToDo Item</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        .container { max-width: 500px; margin: auto; background: #f4f4f4; padding: 20px; border-radius: 8px; }
+        label, input, select, button { display: block; width: 100%; margin-bottom: 10px; padding: 8px; box-sizing: border-box; }
+        button { background: #5cb85c; color: white; border: none; cursor: pointer; }
+        button:hover { background: #4cae4c; }
+        .cancel-link { display: inline-block; margin-top: 10px; color: #337ab7; }
+        .error-message { color: red; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Edit Item</h1>
+
+        <% if (typeof errorMessage !== 'undefined' && errorMessage) { %>
+            <p class="error-message"><%= errorMessage %></p>
+        <% } %>
+
+        <form action="/update/<%= item.id %>" method="POST">
+            <div>
+                <label for="updatedItemText">Task Description:</label>
+                <input type="text" id="updatedItemText" name="updatedItemText" value="<%= item.text %>" required>
+            </div>
+            <div>
+                <label for="updatedItemPriority">Priority:</label>
+                <select id="updatedItemPriority" name="updatedItemPriority">
+                    <% priorities.forEach(function(priorityOption) { %>
+                        <option value="<%= priorityOption %>" <%= item.priority === priorityOption ? 'selected' : '' %>>
+                            <%= priorityOption %>
+                        </option>
+                    <% }); %>
+                </select>
+            </div>
+            <input type="hidden" name="currentFilter" value="<%= typeof currentFilter !== 'undefined' ? currentFilter : 'All' %>">
+            <button type="submit">Update Item</button>
+        </form>
+        <a href="/<%= (typeof currentFilter !== 'undefined' && currentFilter !== 'All') ? '?priority=' + currentFilter : '' %>" class="cancel-link">Cancel</a>
+    </div>
+</body>
+</html>
