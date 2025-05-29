@@ -66,17 +66,43 @@ app.post("/add", function(req, res) { // Changed route to /add for clarity
     res.redirect(`/${currentFilter}`); // Redirect, potentially to the filtered view
 });
 
-// Removing an item from the ToDo List
-app.post("/delete", function(req, res){
-    const itemIndexToDelete = parseInt(req.body.itemIndex, 10); // Get the index from the form
+
+// app.post("/delete", function(req, res){
+//     const itemIndexToDelete = parseInt(req.body.itemIndex, 10); // Get the index from the form
     
-    // Validate the index
-    if (!isNaN(itemIndexToDelete) && itemIndexToDelete >= 0 && itemIndexToDelete < items.length) {
-        items.splice(itemIndexToDelete, 1); // Remove 1 item at the specified index
+//     // Validate the index
+//     if (!isNaN(itemIndexToDelete) && itemIndexToDelete >= 0 && itemIndexToDelete < items.length) {
+//         items.splice(itemIndexToDelete, 1); // Remove 1 item at the specified index
+//     } else {
+//         console.log("Attempted to delete item with invalid index:", req.body.itemIndex);
+//     }
+//     res.redirect("/"); // Redirect back to the homepage to see the updated list
+// });
+
+// --- Deleting an item from ToDo List ---
+app.post("/delete", function(req, res) {
+    const itemIdToDelete = req.body.itemId;
+    items = items.filter(item => item.id !== itemIdToDelete); // Filter out the item to delete
+    const currentFilter = req.body.currentFilter ? `?priority=${req.body.currentFilter}` : "";
+    res.redirect(`/${currentFilter}`);
+});
+
+// --- Show Edit Page ---
+app.get("/edit/:itemId", function(req, res) {
+    const itemIdToEdit = req.params.itemId;
+    const item = items.find(item => item.id === itemIdToEdit);
+    const currentFilter = req.query.currentFilter || "All";
+
+
+    if (item) {
+        res.render("edit_item", {
+            item: item,
+            priorities: priorities,
+            currentFilter: currentFilter
+        });
     } else {
-        console.log("Attempted to delete item with invalid index:", req.body.itemIndex);
+        res.redirect("/"); // Item not found
     }
-    res.redirect("/"); // Redirect back to the homepage to see the updated list
 });
 
 app.listen(8000, function(){
