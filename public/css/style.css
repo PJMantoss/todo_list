@@ -5,7 +5,7 @@ html {
     font-family: 'helvetica neue';
 }
 
-h1{
+h2{
     color: #000;
     padding: 0.63rem;
 }
@@ -17,10 +17,12 @@ h1{
     border-radius: 0.31rem;
     box-shadow: 0.31rem 0.31rem 0.94rem -0.31rem rgba(0,0,0,0.3);
 }
-/* #heading {
+#heading {
     background-color: #a683e3;
+    color: #ffffff;
     text-align: center;
-} */
+    padding: 2rem 0;
+}
 
 .item {
     min-height: 4.38rem;
@@ -89,7 +91,8 @@ input[type="text"]:focus{
 }
 
 footer {
-    /* color: white; */
-    color: rgba(0,0,0,0.5);
+    color: white;
+    /* color: rgba(0,0,0,0.5); */
     text-align: center;
+    padding: 1.5rem 0;
 }
