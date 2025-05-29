@@ -104,6 +104,36 @@ input[type="text"]:focus{
     opacity: 1;
 }
 
+/* Optional: Some basic styling for the delete button and form */
+.item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Aligns item text and delete form */
+    padding: 8px 0;
+}
+
+.item p {
+    margin: 0 10px 0 0; /* Adjust margin as needed */
+    flex-grow: 1; /* Allows paragraph to take available space */
+}
+
+.delete-form {
+    display: inline; /* Keeps the form on the same line */
+}
+
+.delete-button {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.delete-button:hover {
+    background-color: #cc0000;
+}
+
 footer {
     color: white;
     /* color: rgba(0,0,0,0.5); */

@@ -14,15 +14,25 @@
     </div>
 
     <div class="box">
-       <% for(var i=0; i < ejes.length; i++){ %>
+       <!-- <% for(var i=0; i < ejes.length; i++){ %>
         <div class="item">
             <input type="checkbox" name="" id="">
             <p><%= ejes[i] %></p>
         </div>
-       <% } %>
+       <% } %> -->
+       <% for(var i=0; i < ejes.length; i++){ %>
+         <div class="item">
+             <div> <input type="checkbox" name="taskStatus" id="task-<%= i %>"> <p><%= ejes[i] %></p>
+             </div>
+             <form class="delete-form" action="/delete" method="POST">
+                 <input type="hidden" name="itemIndex" value="<%= i %>">
+                 <button type="submit" class="delete-button">Delete</button>
+             </form>
+         </div>
+        <% } %>
 
         <form action="/" method="POST">
-            <input type="text" name="ele1" id="" placeholder="Enter the task">
+            <input type="text" name="ele1" id="newTask" placeholder="Enter the task" autocomplete="off">
             <button type="submit">+</button>
         </form>
     </div>
