@@ -67,8 +67,19 @@ h2{
     margin-bottom: 1rem;
 }
 
-#priorityFilter, .filter-btn {
-    width: 6rem;
+#priorityFilter {
+    width: 5rem;
+}
+
+.filter-btn {
+    width: 5rem;
+    border-radius: .5rem;
+    border-color: transparent;
+    background: #a683e3;
+    color: #fff;
+    font-size: 1.2rem;
+    padding: 0.3rem .4rem;
+    border-width: 0;
 }
 
 .item {
