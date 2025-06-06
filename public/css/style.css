@@ -134,7 +134,7 @@ button {
     margin: 1rem 0;
 }
 
-input[type="text"], #priorityFilter{
+input[type="text"], #priorityFilter, #priority{
     text-align: center;
     height: 3.75rem;
     width: 19.56rem;
