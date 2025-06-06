@@ -57,7 +57,7 @@
 
         <form class="add-form" action="/add" method="POST"> 
             <input type="text" name="ele1" placeholder="Enter the task" autocomplete="off" required> 
-            <select name="priority">
+            <select name="priority" id="priority">
                 <% priorities.forEach(function(p) { %>
                     <option value="<%= p %>" <%= (typeof itemPriorityForForm !== 'undefined' && itemPriorityForForm === p) ? 'selected' : (p === 'Medium' ? 'selected' : '') %>><%= p %></option>
                 <% }); %>

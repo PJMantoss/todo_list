@@ -67,8 +67,12 @@ h2{
     margin-bottom: 1rem;
 }
 
-#priorityFilter {
+#priorityFilter, #priority {
     width: 5rem;
+}
+
+#priority {
+    margin: 1rem 0;
 }
 
 .filter-btn {
