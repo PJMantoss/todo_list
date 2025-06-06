@@ -19,7 +19,7 @@
                 <select id="priorityFilter" name="priority">
                     <option value="All" <%= selectedPriority === 'All' ? 'selected' : '' %>>All</option>
                     <% priorities.forEach(function(p) { %>
-                        <option value="<%= p %>" <%= selectedPriority === p ? 'selected' : '' %>><%= p %></option>
+                        <option id="options" value="<%= p %>" <%= selectedPriority === p ? 'selected' : '' %>><%= p %></option>
                     <% }); %>
                 </select>
                 <button class="filter-btn" type="submit">Filter</button>
