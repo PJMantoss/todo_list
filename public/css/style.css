@@ -51,7 +51,7 @@ h2{
     width: 100%;
 }
 
-.filter-section .filter-form {
+.filter-form, .add-form {
     display: flex;
     flex-direction: column;
     align-items: center;
