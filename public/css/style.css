@@ -20,9 +20,10 @@ h2{
 }
 
 .box {
+    width: 60%;
     display: flex;
     flex-direction: column;
-    max-width: 70rem;
+    max-width: 80rem;
     margin: 3.13rem auto;
     padding: .5rem 1.5rem;
     background: #fff;
@@ -30,14 +31,14 @@ h2{
     box-shadow: 0.31rem 0.31rem 0.94rem -0.31rem rgba(0,0,0,0.3);
 }
 
-#heading {
+#header {
     width: 100%;
     background-color: #a683e3;
     color: #ffffff;
     padding: 2rem 0;
 }
 
-h2, #heading {
+h2, #header {
     text-align: center;
 }
 
