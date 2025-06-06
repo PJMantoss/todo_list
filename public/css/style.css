@@ -58,6 +58,11 @@ h2{
     justify-content: center;
 }
 
+.filter-form label{
+    font-size: 1.25rem;
+    font-weight: 200;
+}
+
 .filter-form label, #priorityFilter {
     margin-bottom: 1rem;
 }
@@ -111,7 +116,7 @@ button {
     border-width: 0;
 }
 
-input[type="text"]{
+input[type="text"], #priorityFilter{
     text-align: center;
     height: 3.75rem;
     width: 19.56rem;
