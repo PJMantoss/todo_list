@@ -38,8 +38,32 @@ h2{
     padding: 2rem 0;
 }
 
-h2, #header {
+.heading, #header {
     text-align: center;
+}
+
+.heading {
+    width: 100%;
+    position: relative;
+}
+
+.filter-section {
+    width: 100%;
+}
+
+.filter-section .filter-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.filter-form label, #priorityFilter {
+    margin-bottom: 1rem;
+}
+
+#priorityFilter, .filter-btn {
+    width: 6rem;
 }
 
 .item {
