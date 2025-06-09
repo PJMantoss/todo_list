@@ -90,7 +90,7 @@ h2{
 }
 
 .item {
-    width: 100%;
+    width: 90%;
     min-height: 4.38rem;
     display: flex;
     align-items: center;
@@ -126,9 +126,9 @@ form {
     margin-left: 1.25rem;
 }
 
-/* button {
-    width: 3.13rem;
-    min-height: 3.13rem;
+.add-btn {
+    width: 3rem;
+    min-height: 3rem;
     border-radius: 50%;
     border-color: transparent;
     background: #a683e3;
@@ -137,7 +137,7 @@ form {
     padding-bottom: 0.38rem;
     border-width: 0;
     margin: 1rem 0;
-} */
+}
 
 input[type="text"], #priorityFilter, #priority{
     text-align: center;
@@ -177,16 +177,16 @@ input[type="text"]:focus{
     display: block;
 }
 
-.delete-button {
+/* .delete-button {
     background-color: #a683e3;
     color: white;
     border: none;
     padding: 5px 10px;
     border-radius: 4px;
     cursor: pointer;
-}
+} */
 
-.delete-button:hover {
+.delete-button:hover, .edit-button:hover, .filter-btn:hover {
     background-color: #321c5a;
 }
 
