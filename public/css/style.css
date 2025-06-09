@@ -75,22 +75,8 @@ h2{
     margin: 1rem 0 0 0;
 }
 
-.filter-btn, .delete-button, .edit-button {
-    width: 5rem;
-    border-radius: .5rem;
-    border-color: transparent;
-    background: #a683e3;
-    color: #fff;
-    font-size: 1.2rem;
-    padding: 0.3rem;
-    border-width: 0;
-    letter-spacing: .15rem;
-    cursor: pointer;
-    text-decoration: none;
-}
-
 .item {
-    width: 90%;
+    width: 100%;
     min-height: 4.38rem;
     display: flex;
     align-items: center;
@@ -98,6 +84,21 @@ h2{
     border-bottom: 0.06rem solid #f1f1f1;
     margin: 0 0 1rem 0;
     padding: 0 .5rem;
+}
+
+.item-details {
+    width: 60%;
+    display: inherit;
+    align-items: center;
+    justify-content: center;
+}
+
+.item-actions {
+    width: 35%;
+    display: inherit;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .item:last-child {
@@ -126,13 +127,32 @@ form {
     margin-left: 1.25rem;
 }
 
+.action-button {
+    border-color: transparent;
+    background: #a683e3;
+    color: #fff;
+    border-color: transparent;
+}
+
+.action-button:hover {
+    background-color: #321c5a;
+}
+
+.filter-btn, .delete-button, .edit-button {
+    border-radius: .5rem;
+    font-size: 1.2rem;
+    padding: 0.3rem;
+    border-width: 0;
+    letter-spacing: .15rem;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+}
+
 .add-btn {
     width: 3rem;
     min-height: 3rem;
     border-radius: 50%;
-    border-color: transparent;
-    background: #a683e3;
-    color: #fff;
     font-size: 1.88rem;
     padding-bottom: 0.38rem;
     border-width: 0;
@@ -185,10 +205,6 @@ input[type="text"]:focus{
     border-radius: 4px;
     cursor: pointer;
 } */
-
-.delete-button:hover, .edit-button:hover, .filter-btn:hover {
-    background-color: #321c5a;
-}
 
 footer {
     color: white;

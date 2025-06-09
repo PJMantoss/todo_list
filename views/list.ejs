@@ -22,7 +22,7 @@
                         <option id="options" value="<%= p %>" <%= selectedPriority === p ? 'selected' : '' %>><%= p %></option>
                     <% }); %>
                 </select>
-                <button class="filter-btn" type="submit">Filter</button>
+                <button class="action-button filter-btn" type="submit">Filter</button>
             </form>
         </div>
 
@@ -63,7 +63,7 @@
                 <% }); %>
             </select>
             <input type="hidden" name="currentFilter" id="currentFilter" value="<%= selectedPriority %>">
-            <button class="add-btn" type="submit">+</button>
+            <button class="action-button add-btn" type="submit">+</button>
         </form>
     </div>
 
