@@ -89,7 +89,7 @@ h2{
 }
 
 .item {
-    width: 80%;
+    width: 100%;
     min-height: 4.38rem;
     display: flex;
     align-items: center;
