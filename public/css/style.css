@@ -75,7 +75,7 @@ h2{
     margin: 1rem 0 0 0;
 }
 
-.filter-btn {
+.filter-btn, .delete-button {
     width: 5rem;
     border-radius: .5rem;
     border-color: transparent;
