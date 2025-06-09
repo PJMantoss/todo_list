@@ -126,7 +126,7 @@ form {
     margin-left: 1.25rem;
 }
 
-button {
+/* button {
     width: 3.13rem;
     min-height: 3.13rem;
     border-radius: 50%;
@@ -137,7 +137,7 @@ button {
     padding-bottom: 0.38rem;
     border-width: 0;
     margin: 1rem 0;
-}
+} */
 
 input[type="text"], #priorityFilter, #priority{
     text-align: center;
