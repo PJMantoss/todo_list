@@ -1,12 +1,13 @@
 html {
     background-color: #e4e9fd;
     background-image: linear-gradient(65deg, #a683e3 50%, #e4e9fd 50%);
-    /* min-height: 62.5rem; */
+    min-height: 62.5rem;
     font-family: 'helvetica neue';
 }
 
 body {
     width: 100%;
+    height: auto;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -47,6 +48,8 @@ h2{
     position: relative;
 }
 
+/* Filter Section */
+
 .filter-section {
     width: 100%;
     margin: 1rem 0;
@@ -75,6 +78,11 @@ h2{
 #priority {
     margin: 1rem 0 0 0;
 }
+
+/* Filter Section End */
+
+
+/* ToDo List item  */
 
 .item {
     width: 100%;
@@ -107,11 +115,9 @@ h2{
     width: 22%;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
-/* .item:last-child {
-    border-bottom: 0;
-} */
 
 /* Allows paragraph to take available space */
 .item p {
@@ -135,6 +141,8 @@ p {
     font-weight: 200;
     color: #00204a;
 }
+
+/* ToDo List item End */
 
 form {
     text-align: center;
@@ -246,4 +254,37 @@ footer {
     /* color: rgba(0,0,0,0.5); */
     text-align: center;
     padding: 1.5rem 0;
+}
+
+/* Responsiveness  */
+
+@media only screen and (max-width: 1000px){
+    .box {
+        width: 80%;
+    }
+}
+
+@media only screen and (max-width: 750px){
+    .item {
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .item-details {
+        width: 90%;
+        border: 0;
+        margin: 0 0 1rem 0;
+    }
+
+    .item-actions {
+        width: 90%;
+    }
+}
+
+@media only screen and (max-width: 450px){
+    .item-actions {
+        width: 90%;
+        flex-direction: column;
+    }
 }
