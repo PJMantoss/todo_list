@@ -99,6 +99,10 @@ h2{
     width: 80%;
 }
 
+.item-priority {
+    width: 10%;
+}
+
  .item-actions {
     width: 22%;
     display: flex;
@@ -122,6 +126,7 @@ input:checked+p {
 
 input[type="checkbox"]{
     margin: .5rem 0.1rem;
+    width: 10%;
 }
 
 p {
