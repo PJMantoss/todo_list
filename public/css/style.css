@@ -80,29 +80,32 @@ h2{
     min-height: 4.38rem;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     border-bottom: 0.06rem solid #f1f1f1;
     margin: 0 0 1rem 0;
-    padding: 0 .5rem;
 }
 
 .item-details {
-    width: 60%;
-    display: inherit;
+    width: 50%;
+    display: flex;
     align-items: center;
     justify-content: center;
+    border-right: .2rem solid #f4f4f4;
 }
 
-.item-actions {
-    width: 35%;
-    display: inherit;
-    flex-direction: column;
+ .item-actions {
+    width: 25%;
+    display: flex;
     align-items: center;
-    justify-content: space-between;
 }
 
 .item:last-child {
     border-bottom: 0;
+}
+
+.item p {
+    margin: 0 10px 0 0; /* Adjust margin as needed */
+    flex-grow: 1; /* Allows paragraph to take available space */
 }
 
 input:checked+p {
@@ -140,7 +143,7 @@ form {
     background-color: #321c5a;
 }
 
-.filter-btn, .delete-button, .edit-button {
+.filter-btn, .delete-button, .edit-button, .cancel-link {
     border-radius: .6rem;
     font-size: 1.2rem;
     border-width: 0;
@@ -181,31 +184,51 @@ input[type="text"]:focus{
     opacity: 1;
 }
 
-/* styling for the delete button and form */
-.item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between; /* Aligns item text and delete form */
-    padding: 8px 0;
-}
-
-.item p {
-    margin: 0 10px 0 0; /* Adjust margin as needed */
-    flex-grow: 1; /* Allows paragraph to take available space */
-}
-
 .delete-form {
     display: block;
 }
 
-/* .delete-button {
-    background-color: #a683e3;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 4px;
-    cursor: pointer;
-} */
+/* Edit Page */
+.update-container { 
+    max-width: 500px; 
+    margin: auto; 
+    background: #f4f4f4; 
+    padding: 20px; 
+    border-radius: 8px; 
+    text-align: center;
+}
+
+.edit-form > label, input, select, .update-btn { 
+    display: block; 
+    width: 100%; 
+    margin-bottom: 10px; 
+    padding: 8px; 
+    box-sizing: border-box; 
+}
+
+.update-btn { 
+    background: #5cb85c; 
+    color: white; 
+    border: none; 
+    cursor: pointer; 
+}
+
+button:hover { 
+    background: #4cae4c; 
+}
+
+.cancel-link { 
+    display: inline-block; 
+    margin-top: 10px; 
+    color: #fff; 
+}
+
+.error-message { 
+    color: red; 
+    margin-bottom: 10px; 
+}
+
+/* Edit Page Ends */
 
 footer {
     color: white;
