@@ -86,10 +86,10 @@ h2{
 }
 
 .item-details {
-    width: 50%;
+    width: 60%;
     display: flex;
     align-items: center;
-    justify-content: center;
+    /* justify-content: space-between; */
     border-right: .2rem solid #f4f4f4;
 }
 
@@ -99,14 +99,15 @@ h2{
     align-items: center;
 }
 
-.item:last-child {
+/* .item:last-child {
     border-bottom: 0;
-}
+} */
 
-.item p {
-    margin: 0 10px 0 0; /* Adjust margin as needed */
-    flex-grow: 1; /* Allows paragraph to take available space */
-}
+/* Allows paragraph to take available space */
+/* .item p {
+    margin: 0 10px 0 0;
+    flex-grow: 1; 
+} */
 
 input:checked+p {
     text-decoration: line-through;
@@ -114,12 +115,11 @@ input:checked+p {
 }
 
 input[type="checkbox"]{
-    margin: 1rem 0.25rem;
+    margin: .5rem 0.1rem;
 }
 
 p {
-    margin: 0;
-    padding: 1.25rem;
+    /* padding: 1.25rem; */
     font-size: 1.25rem;
     font-weight: 200;
     color: #00204a;
