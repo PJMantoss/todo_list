@@ -2,6 +2,8 @@ const express = require('express');
 const ejs = require("ejs");
 const bodyParser = require('body-parser');
 
+const mongoose = require('mongoose');
+
 var app = express();
 app.set("view engine", "ejs");
 app.use(express.urlencoded({extended: true}));
