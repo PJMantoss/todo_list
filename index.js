@@ -2,7 +2,23 @@ const express = require('express');
 const ejs = require("ejs");
 const bodyParser = require('body-parser');
 
-// const mongoose = require('mongoose');
+const mongoose = require('mongoose');
+// require('dotenv').config(); 
+
+const connectDB = async () => {
+  try {
+    await mongoose.connect("mongodb+srv://joelptoss:holy@cluster0.n7azmij.mongodb.net/", {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log('MongoDB connected...');
+  } catch (err) {
+    console.error(err.message);
+    process.exit(1);
+  }
+};
+// Connect to the database
+connectDB();
 
 // mongoose.connect("mongodb+srv://joelptoss:holy@cluster0.n7azmij.mongodb.net/");
 
