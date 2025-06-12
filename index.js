@@ -16,6 +16,8 @@ const todo = new item({
     name: "Cook Jollof Rice"
 });
 
+todo.save();
+
 var app = express();
 app.set("view engine", "ejs");
 app.use(express.urlencoded({extended: true}));
@@ -33,10 +35,6 @@ function getFilteredItems(currentItems, priorityFilter) {
 }
 
 var example = "working";
-
-// app.get("/", function(req, res){
-//     res.render("list", {ejes: items})
-// });
 
 // --- Main page: Display items, handle filtering ---
 app.get("/", function(req, res) {
