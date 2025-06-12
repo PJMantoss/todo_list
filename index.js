@@ -2,28 +2,28 @@ const express = require('express');
 const ejs = require("ejs");
 const bodyParser = require('body-parser');
 
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
 
-mongoose.connect("mongodb+srv://joelptoss:holy@cluster0.n7azmij.mongodb.net/");
+// mongoose.connect("mongodb+srv://joelptoss:holy@cluster0.n7azmij.mongodb.net/");
 
-const todoSchema = new mongoose.Schema({
-    name: String
-});
+// const todoSchema = new mongoose.Schema({
+//     name: String
+// });
 
-const item = mongoose.model("todos", todoSchema);
+// const item = mongoose.model("todos", todoSchema);
 
-const todo = new item({
-    name: "Cook Jollof Rice"
-});
+// const todo = new item({
+//     name: "Cook Jollof Rice"
+// });
 
-todo.save();
+// todo.save();
 
 var app = express();
 app.set("view engine", "ejs");
 app.use(express.urlencoded({extended: true}));
 app.use(express.static('public'));
 
-// var items = [];
+var items = [];
 const priorities = ["High", "Medium", "Low"]; // Define available priorities
 
 // --- Helper function to get filtered items ---
