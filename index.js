@@ -4,12 +4,24 @@ const bodyParser = require('body-parser');
 
 const mongoose = require('mongoose');
 
+mongoose.connect("mongodb+srv://joelptoss:holy@cluster0.n7azmij.mongodb.net/");
+
+const todoSchema = new mongoose.Schema({
+    name: String
+});
+
+const item = mongoose.model("todos", todoSchema);
+
+const todo = new item({
+    name: "Cook Jollof Rice"
+});
+
 var app = express();
 app.set("view engine", "ejs");
 app.use(express.urlencoded({extended: true}));
 app.use(express.static('public'));
 
-var items = [];
+// var items = [];
 const priorities = ["High", "Medium", "Low"]; // Define available priorities
 
 // --- Helper function to get filtered items ---
