@@ -20,6 +20,48 @@ const connectDB = async () => {
 // Connect to the database
 connectDB();
 
+// Middleware to parse incoming JSON requests
+app.use(express.json());
+
+// model
+const TodoSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+});
+
+// --- ROUTE TO ADD A NEW USER ---
+app.post('/todo', async (req, res) => {
+  try {
+    // Destructure the expected data from the request body
+    const { name } = req.body;
+
+    // Check if a todo item already exists
+    let todo = await todos.findOne({ name });
+    if (todo) {
+      return res.status(400).json({ msg: 'Todo already exists' });
+    }
+
+    const Item = mongoose.model('todos', TodoSchema);
+
+    // Create a new instance of the Todo model
+    const todoItem = new Item({
+        name: "Cook Jollof Rice"
+    });
+
+// Save the new user to the database
+    await todoItem.save();
+
+    // Respond with the newly created todo data
+    res.status(201).json(todoItem);
+
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
 // mongoose.connect("mongodb+srv://joelptoss:holy@cluster0.n7azmij.mongodb.net/");
 
 // const todoSchema = new mongoose.Schema({
