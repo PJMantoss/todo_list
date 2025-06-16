@@ -28,14 +28,14 @@ const connectAndAddTodo = async () => {
         const newTodo = await Todo.create({
             name: "Cook Jollof Rice"
         });
-        console.log("New task added:", newTask);
+        console.log("New todo added:", newTodo);
 
     } catch (error) {
-        console.error("Error connecting to MongoDB Atlas or adding task:", error);
+        console.error("Error connecting to MongoDB Atlas or adding todo:", error);
     } finally {
         // Close the connection when the script is done (optional, depends on application structure)
         // For a long-running server, you would typically not close the connection here.
-        // mongoose.connection.close();
+        mongoose.connection.close();
     }
 };
 
