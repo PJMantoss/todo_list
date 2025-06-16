@@ -1,82 +1,52 @@
 const express = require('express');
+var app = express();
 const ejs = require("ejs");
 const bodyParser = require('body-parser');
 
 const mongoose = require('mongoose');
-// require('dotenv').config(); 
 
-const connectDB = async () => {
-  try {
-    await mongoose.connect("mongodb+srv://joelptoss:holy@cluster0.n7azmij.mongodb.net/", {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-    console.log('MongoDB connected...');
-  } catch (err) {
-    console.error(err.message);
-    process.exit(1);
-  }
-};
-// Connect to the database
-connectDB();
+// mongoose.connect("mongodb://localhost:27017/todo");
 
-// Middleware to parse incoming JSON requests
-app.use(express.json());
-
-// model
-const TodoSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-  },
+const todoSchema = new mongoose.Schema({
+    name: String
 });
 
-// --- ROUTE TO ADD A NEW USER ---
-app.post('/todo', async (req, res) => {
-  try {
-    // Destructure the expected data from the request body
-    const { name } = req.body;
+// const item = mongoose.model("task", todoSchema);
+const Todo = mongoose.model("Todo", todoSchema);
 
-    // Check if a todo item already exists
-    let todo = await todos.findOne({ name });
-    if (todo) {
-      return res.status(400).json({ msg: 'Todo already exists' });
+// --- Connection and Document Creation ---
+const connectAndAddTodo = async () => {
+    try {
+        // Connect to MongoDB Atlas using the connection string from environment variables
+        await mongoose.connect("mongodb+srv://joelptoss:holy@cluster0.n7azmij.mongodb.net/", {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        });
+        console.log("Successfully connected to MongoDB Atlas!");
+
+        // Create and save a new task
+        const newTodo = await Todo.create({
+            name: "Cook Jollof Rice"
+        });
+        console.log("New task added:", newTask);
+
+    } catch (error) {
+        console.error("Error connecting to MongoDB Atlas or adding task:", error);
+    } finally {
+        // Close the connection when the script is done (optional, depends on application structure)
+        // For a long-running server, you would typically not close the connection here.
+        // mongoose.connection.close();
     }
+};
 
-    const Item = mongoose.model('todos', TodoSchema);
+connectAndAddTodo();
 
-    // Create a new instance of the Todo model
-    const todoItem = new Item({
-        name: "Cook Jollof Rice"
-    });
-
-// Save the new user to the database
-    await todoItem.save();
-
-    // Respond with the newly created todo data
-    res.status(201).json(todoItem);
-
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send('Server Error');
-  }
-});
-
-// mongoose.connect("mongodb+srv://joelptoss:holy@cluster0.n7azmij.mongodb.net/");
-
-// const todoSchema = new mongoose.Schema({
-//     name: String
-// });
-
-// const item = mongoose.model("todos", todoSchema);
-
-// const todo = new item({
+// const todo = new Todo({
 //     name: "Cook Jollof Rice"
 // });
 
 // todo.save();
 
-var app = express();
 app.set("view engine", "ejs");
 app.use(express.urlencoded({extended: true}));
 app.use(express.static('public'));
@@ -205,5 +175,5 @@ app.post("/update/:itemId", function(req, res) {
 });
 
 app.listen(8000, function(){
-    console.log("Server Started!");
+    console.log("Server Started on port 8000!");
 });
