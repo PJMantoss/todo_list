@@ -5,30 +5,27 @@ const bodyParser = require('body-parser');
 
 const mongoose = require('mongoose');
 
-// mongoose.connect("mongodb://localhost:27017/todo");
-
 const todoSchema = new mongoose.Schema({
     name: String
 });
 
-// const item = mongoose.model("task", todoSchema);
 const Todo = mongoose.model("Todo", todoSchema);
 
 // --- Connection and Document Creation ---
 const connectAndAddTodo = async () => {
     try {
         // Connect to MongoDB Atlas using the connection string from environment variables
-        await mongoose.connect("mongodb+srv://joelptoss:holy@cluster0.n7azmij.mongodb.net/", {
+        await mongoose.connect("mongodb+srv://joelptoss:holy@cluster0.n7azmij.mongodb.net/todo", {
             useNewUrlParser: true,
             useUnifiedTopology: true
         });
         console.log("Successfully connected to MongoDB Atlas!");
 
         // Create and save a new task
-        const newTodo = await Todo.create({
-            name: "Cook Jollof Rice"
+        const newTodo2 = await Todo.create({
+            name: "Read Church History"
         });
-        console.log("New todo added:", newTodo);
+        console.log("New todo added:", newTodo2);
 
     } catch (error) {
         console.error("Error connecting to MongoDB Atlas or adding todo:", error);
@@ -40,12 +37,6 @@ const connectAndAddTodo = async () => {
 };
 
 connectAndAddTodo();
-
-// const todo = new Todo({
-//     name: "Cook Jollof Rice"
-// });
-
-// todo.save();
 
 app.set("view engine", "ejs");
 app.use(express.urlencoded({extended: true}));
@@ -62,7 +53,6 @@ function getFilteredItems(currentItems, priorityFilter) {
     return currentItems;
 }
 
-var example = "working";
 
 // --- Main page: Display items, handle filtering ---
 app.get("/", function(req, res) {
@@ -79,12 +69,6 @@ app.get("/", function(req, res) {
         infoMessage: req.query.info // For general messages like "Item added"
     });
 });
-
-// app.post("/", function(req, res){
-//     var item = req.body.ele1;
-//     items.push(item);
-//     res.redirect("/");
-// });
 
 // --- Adding new item to ToDo List ---
 app.post("/add", function(req, res) { // Changed route to /add for clarity
@@ -105,19 +89,6 @@ app.post("/add", function(req, res) { // Changed route to /add for clarity
     const currentFilter = req.body.currentFilter ? `?priority=${req.body.currentFilter}` : "";
     res.redirect(`/${currentFilter}`); // Redirect, potentially to the filtered view
 });
-
-
-// app.post("/delete", function(req, res){
-//     const itemIndexToDelete = parseInt(req.body.itemIndex, 10); // Get the index from the form
-    
-//     // Validate the index
-//     if (!isNaN(itemIndexToDelete) && itemIndexToDelete >= 0 && itemIndexToDelete < items.length) {
-//         items.splice(itemIndexToDelete, 1); // Remove 1 item at the specified index
-//     } else {
-//         console.log("Attempted to delete item with invalid index:", req.body.itemIndex);
-//     }
-//     res.redirect("/"); // Redirect back to the homepage to see the updated list
-// });
 
 // --- Deleting an item from ToDo List ---
 app.post("/delete", function(req, res) {
