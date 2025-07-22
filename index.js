@@ -11,119 +11,76 @@ app.use(express.static('public'));
 
 // --- MongoDB Connection and Schema Definition ---
 
-// Best practice: Store your connection string in an environment variable.
-// For example: const dbURI = process.env.MONGO_URI;
+// ToDo Later: Store your connection string in an environment variable.
+// Example: const dbURI = process.env.MONGO_URI;
 const dbURI = "mongodb+srv://joelptoss:holy@cluster0.n7azmij.mongodb.net/todo";
 
-connectAndAddTodo();
-
-app.set("view engine", "ejs");
-app.use(express.urlencoded({extended: true}));
-app.use(express.static('public'));
-
-var items = [];
-const priorities = ["High", "Medium", "Low"]; // Define available priorities
-
-// --- Helper function to get filtered items ---
-function getFilteredItems(currentItems, priorityFilter) {
-    if (priorityFilter && priorityFilter !== "All") {
-        return currentItems.filter(item => item.priority === priorityFilter);
+// Define the schema to match the data structure used in the app
+const todoSchema = new mongoose.Schema({
+    text: {
+        type: String,
+        required: true
+    },
+    priority: {
+        type: String,
+        required: true
     }
-    return currentItems;
-}
-
-
-// --- Main page: Display items, handle filtering ---
-app.get("/", function(req, res) {
-    const priorityFilter = req.query.priority;
-    const errorMessage = req.query.error; // For displaying errors passed via redirect
-
-    let itemsToDisplay = getFilteredItems(items, priorityFilter);
-
-    res.render("list", {
-        ejes: itemsToDisplay,
-        priorities: priorities, // Pass priorities for the filter dropdown
-        selectedPriority: priorityFilter || "All", // For highlighting active filter
-        errorMessage: errorMessage === "emptyInput" ? "Task text cannot be empty!" : null,
-        infoMessage: req.query.info // For general messages like "Item added"
-    });
 });
 
-// --- Adding new item to ToDo List ---
-app.post("/add", function(req, res) { // Changed route to /add for clarity
-    const itemText = req.body.ele1;
-    const itemPriority = req.body.priority;
+// Create the Mongoose model
+const Todo = mongoose.model("Todo", todoSchema);
 
-    if (!itemText || itemText.trim() === "") {
-        // Option 1: Redirect with error query param (simpler for state management)
-        res.redirect("/?error=emptyInput");
-        return;
-    }
+// Define available priorities for dropdowns
+const priorities = ["High", "Medium", "Low"];
 
-    items.push({
-        id: Date.now().toString(), // Simple unique ID
-        text: itemText.trim(),
-        priority: itemPriority || "Medium" // Default priority if none selected
-    });
-    const currentFilter = req.body.currentFilter ? `?priority=${req.body.currentFilter}` : "";
-    res.redirect(`/${currentFilter}`); // Redirect, potentially to the filtered view
-});
+// --- Route Handlers ---
 
-// --- Deleting an item from ToDo List ---
-app.post("/delete", function(req, res) {
-    const itemIdToDelete = req.body.itemId;
-    items = items.filter(item => item.id !== itemIdToDelete); // Filter out the item to delete
-    const currentFilter = req.body.currentFilter ? `?priority=${req.body.currentFilter}` : "";
-    res.redirect(`/${currentFilter}`);
-});
+// --- Main page: Display items from DB, handle filtering ---
+app.get("/", async (req, res) => {
+    try {
+        const priorityFilter = req.query.priority;
+        const errorMessage = req.query.error;
 
-// --- Show Edit Page ---
-app.get("/edit/:itemId", function(req, res) {
-    const itemIdToEdit = req.params.itemId;
-    const item = items.find(item => item.id === itemIdToEdit);
-    const currentFilter = req.query.currentFilter || "All";
+        // Build a query object. If no filter or "All" is selected, the query object is empty, fetching all items.
+        const query = {};
+        if (priorityFilter && priorityFilter !== "All") {
+            query.priority = priorityFilter;
+        }
 
+        // Fetch items from the database based on the filter query
+        const itemsToDisplay = await Todo.find(query);
 
-    if (item) {
-        res.render("edit_item", {
-            item: item,
+        res.render("list", {
+            ejes: itemsToDisplay,
             priorities: priorities,
-            currentFilter: currentFilter
+            selectedPriority: priorityFilter || "All",
+            errorMessage: errorMessage === "emptyInput" ? "Task text cannot be empty!" : null,
+            infoMessage: req.query.info
         });
-    } else {
-        res.redirect("/"); // Item not found
+
+    } catch (error) {
+        console.error("Error fetching ToDo items:", error);
+        res.status(500).send("An error occurred while fetching ToDo items.");
     }
 });
 
-// --- Update an Item ---
-app.post("/update/:itemId", function(req, res) {
-    const itemIdToUpdate = req.params.itemId;
-    const updatedText = req.body.updatedItemText;
-    const updatedPriority = req.body.updatedItemPriority;
-    const currentFilter = req.body.currentFilter;
-
-
-    if (!updatedText || updatedText.trim() === "") {
-        // Handle empty updated text - redirect back to edit page with an error
-        const item = items.find(it => it.id === itemIdToUpdate);
-        res.render("edit_item", {
-            item: item, // Send original item data back
-            priorities: priorities,
-            errorMessage: "Task text cannot be empty!",
-            currentFilter: currentFilter
+// --- Connect to DB and Start Server ---
+const startServer = async () => {
+    try {
+        await mongoose.connect(dbURI, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
         });
-        return;
-    }
+        console.log("Successfully connected to MongoDB Atlas!");
+        
+        app.listen(8000, () => {
+            console.log("Server Started on port 8000!");
+        });
 
-    const itemIndex = items.findIndex(item => item.id === itemIdToUpdate);
-    if (itemIndex > -1) {
-        items[itemIndex].text = updatedText.trim();
-        items[itemIndex].priority = updatedPriority;
+    } catch (error) {
+        console.error("Error connecting to MongoDB Atlas. Server not started.", error);
+        process.exit(1); // Exit the process with an error code
     }
-    const redirectFilter = currentFilter && currentFilter !== "All" ? `?priority=${currentFilter}` : "";
-    res.redirect(`/${redirectFilter}`);
-});
+};
 
-app.listen(8000, function(){
-    console.log("Server Started on port 8000!");
-});
+startServer();
