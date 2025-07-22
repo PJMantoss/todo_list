@@ -139,6 +139,42 @@ app.get("/edit/:itemId", async (req, res) => {
     }
 });
 
+// --- Update an Item in the DB ---
+app.post("/update/:itemId", async (req, res) => {
+    try {
+        const itemIdToUpdate = req.params.itemId;
+        const updatedText = req.body.updatedItemText;
+        const updatedPriority = req.body.updatedItemPriority;
+        const currentFilter = req.body.currentFilter;
+
+        // Validate input
+        if (!updatedText || updatedText.trim() === "") {
+            const item = await Todo.findById(itemIdToUpdate); // Refetch item to pass back to the form
+            res.render("edit_item", {
+                item: item,
+                priorities: priorities,
+                errorMessage: "Task text cannot be empty!",
+                currentFilter: currentFilter
+            });
+            return;
+        }
+
+        // Find the item by ID and update it with the new text and priority
+        await Todo.findByIdAndUpdate(itemIdToUpdate, {
+            text: updatedText.trim(),
+            priority: updatedPriority
+        });
+
+        // Redirect back to the list, preserving the filter
+        const redirectFilter = currentFilter && currentFilter !== "All" ? `?priority=${currentFilter}` : "";
+        res.redirect(`/${redirectFilter}`);
+
+    } catch (error) {
+        console.error("Error updating item:", error);
+        res.status(500).send("An error occurred while updating the item.");
+    }
+});
+
 // --- Connect to DB and Start Server ---
 const startServer = async () => {
     try {
