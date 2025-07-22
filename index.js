@@ -9,36 +9,11 @@ app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
-const todoSchema = new mongoose.Schema({
-    name: String
-});
+// --- MongoDB Connection and Schema Definition ---
 
-const Todo = mongoose.model("Todo", todoSchema);
-
-// --- Connection and Document Creation ---
-const connectAndAddTodo = async () => {
-    try {
-        // Connect to MongoDB Atlas using the connection string from environment variables
-        await mongoose.connect("mongodb+srv://joelptoss:holy@cluster0.n7azmij.mongodb.net/todo", {
-            useNewUrlParser: true,
-            useUnifiedTopology: true
-        });
-        console.log("Successfully connected to MongoDB Atlas!");
-
-        // Create and save a new task
-        const newTodo2 = await Todo.create({
-            name: "Read Church History"
-        });
-        console.log("New todo added:", newTodo2);
-
-    } catch (error) {
-        console.error("Error connecting to MongoDB Atlas or adding todo:", error);
-    } finally {
-        // Close the connection when the script is done (optional, depends on application structure)
-        // For a long-running server, you would typically not close the connection here.
-        mongoose.connection.close();
-    }
-};
+// Best practice: Store your connection string in an environment variable.
+// For example: const dbURI = process.env.MONGO_URI;
+const dbURI = "mongodb+srv://joelptoss:holy@cluster0.n7azmij.mongodb.net/todo";
 
 connectAndAddTodo();
 
