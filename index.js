@@ -64,6 +64,81 @@ app.get("/", async (req, res) => {
     }
 });
 
+// --- Adding new item to ToDo List and saving to DB ---
+app.post("/add", async (req, res) => {
+    try {
+        const itemText = req.body.ele1;
+        const itemPriority = req.body.priority;
+
+        // Validate input
+        if (!itemText || itemText.trim() === "") {
+            res.redirect("/?error=emptyInput");
+            return;
+        }
+
+        // Create a new Todo document
+        const newTodo = new Todo({
+            text: itemText.trim(),
+            priority: itemPriority || "Medium"
+        });
+
+        // Save the new document to the database
+        await newTodo.save();
+
+        // Redirect back to the list, preserving the filter
+        const currentFilter = req.body.currentFilter ? `?priority=${req.body.currentFilter}` : "";
+        res.redirect(`/${currentFilter}`);
+
+    } catch (error) {
+        console.error("Error adding ToDo item:", error);
+        res.status(500).send("An error occurred while adding the item.");
+    }
+});
+
+// --- Deleting an item from the DB ---
+app.post("/delete", async (req, res) => {
+    try {
+        const itemIdToDelete = req.body.itemId;
+        
+        // Find the item by its ID and remove it from the database
+        await Todo.findByIdAndDelete(itemIdToDelete);
+
+        // Redirect back to the list, preserving the filter
+        const currentFilter = req.body.currentFilter ? `?priority=${req.body.currentFilter}` : "";
+        res.redirect(`/${currentFilter}`);
+
+    } catch (error) {
+        console.error("Error deleting ToDo item:", error);
+        res.status(500).send("An error occurred while deleting the item.");
+    }
+});
+
+// --- Show Edit Page for a specific item ---
+app.get("/edit/:itemId", async (req, res) => {
+    try {
+        const itemIdToEdit = req.params.itemId;
+        
+        // Find the item in the database by its ID
+        const item = await Todo.findById(itemIdToEdit);
+        const currentFilter = req.query.currentFilter || "All";
+
+        if (item) {
+            res.render("edit_item", {
+                item: item,
+                priorities: priorities,
+                currentFilter: currentFilter
+            });
+        } else {
+            // If item is not found, redirect to the homepage
+            res.redirect("/");
+        }
+
+    } catch (error) {
+        console.error("Error finding item to edit:", error);
+        res.redirect("/");
+    }
+});
+
 // --- Connect to DB and Start Server ---
 const startServer = async () => {
     try {
