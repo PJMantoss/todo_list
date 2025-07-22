@@ -1,9 +1,13 @@
 const express = require('express');
-var app = express();
+const app = express();
 const ejs = require("ejs");
 const bodyParser = require('body-parser');
-
 const mongoose = require('mongoose');
+
+// --- Express App Setup ---
+app.set("view engine", "ejs");
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static('public'));
 
 const todoSchema = new mongoose.Schema({
     name: String
