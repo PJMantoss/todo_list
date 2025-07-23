@@ -42,7 +42,7 @@ h2{
     background-color: #a683e3;
     color: #ffffff;
     padding: 2rem 0;
-    font-size: 2rem;
+    font-size: 1.8rem;
 }
 
 .heading, #header {
@@ -161,7 +161,8 @@ form {
     color: #fff;
     border-color: transparent;
     margin-bottom: 1rem;
-    padding: 0.2rem 0.3rem;
+    padding: 0.4rem 0.6rem;
+    font-size: 1rem;
 }
 
 .action-button:hover {
@@ -170,9 +171,8 @@ form {
 
 .filter-btn, .delete-button, .edit-button, .cancel-link {
     border-radius: .6rem;
-    font-size: 1.2rem;
     border-width: 0;
-    letter-spacing: .15rem;
+    letter-spacing: .12rem;
     cursor: pointer;
     text-align: center;
     text-decoration: none;
