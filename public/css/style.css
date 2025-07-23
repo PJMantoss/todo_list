@@ -292,14 +292,16 @@ footer {
 @media only screen and (max-width: 450px){
 
     html {
-        min-height: 1vh;
+        height: auto;
     }
 
     body {
         overflow: hidden;
     }
-     .box {
+
+    .box {
         width: 96%;
+        padding: .2rem .5rem;
     }
 
     .item-actions {
