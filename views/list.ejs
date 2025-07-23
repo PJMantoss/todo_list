@@ -31,7 +31,8 @@
             <p class="error-message"><%= errorMessage %></p>
         <% } %>
          <% if (typeof infoMessage !== 'undefined' && infoMessage) { %>
-            <p class="info-message"><%= infoMessage %></p> <% } %>
+            <p class="info-message"><%= infoMessage %></p> 
+        <% } %>
 
 
         <% ejes.forEach(function(item) { %>
@@ -53,7 +54,7 @@
             </div>
         <% }); %>
         <% if (ejes.length === 0 && (!errorMessage)) { %>
-            <p>Your ToDo list is empty. Add a new task below!</p>
+            <p class="empty-list-warning">Add a new task below!</p>
         <% } %>
 
         <form class="add-form" action="/add" method="POST"> 

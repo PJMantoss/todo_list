@@ -33,6 +33,10 @@ h2{
     box-shadow: 0.31rem 0.31rem 0.94rem -0.31rem rgba(0,0,0,0.3);
 }
 
+.box .empty-list-warning {
+    text-align: center;
+}
+
 #header {
     width: 100%;
     background-color: #a683e3;
