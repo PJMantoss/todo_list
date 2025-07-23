@@ -304,6 +304,10 @@ footer {
         width: 90%;
         flex-direction: column;
     }
+
+    #priorityFilter, #priority {
+        width: 80%;
+    }
 }
 
 @media only screen and (max-width: 375px){
