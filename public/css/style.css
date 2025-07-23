@@ -2,6 +2,7 @@ html {
     background-color: #e4e9fd;
     background-image: linear-gradient(65deg, #a683e3 50%, #e4e9fd 50%);
     background-position: center center;
+    background-repeat: no-repeat;
     min-height: 62.5rem;
     font-family: 'helvetica neue';
 }
@@ -289,6 +290,14 @@ footer {
 }
 
 @media only screen and (max-width: 450px){
+
+    html {
+        min-height: 1vh;
+    }
+
+    body {
+        overflow: hidden;
+    }
      .box {
         width: 96%;
     }
@@ -301,7 +310,7 @@ footer {
 
 @media only screen and (max-width: 375px){
     .item-details {
-        width: 95%;
+        width: 90%;
         flex-direction: column;
     }
 
