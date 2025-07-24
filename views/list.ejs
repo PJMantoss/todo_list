@@ -45,7 +45,7 @@
                 <div class="item-actions">
                     <a href="/edit/<%= item.id %>?currentFilter=<%= selectedPriority %>" class="action-button edit-button">Edit</a>
                     
-                    <form class="delete-form" action="/delete" method="POST" style="display: inline;">
+                    <form class="delete-form" action="/delete" method="POST">
                         <input type="hidden" name="itemId" id="itemId" value="<%= item.id %>">
                         <input type="hidden" name="currentFilter" id="currentFilter" value="<%= selectedPriority %>">
                         <button type="submit" class="action-button delete-button">Delete</button>
