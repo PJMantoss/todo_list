@@ -162,7 +162,7 @@ form {
     color: #fff;
     border-color: transparent;
     margin-bottom: 1rem;
-    padding: 0.4rem 0.6rem;
+    padding: 0.3rem 0.6rem;
     font-size: 1rem;
 }
 
@@ -283,10 +283,6 @@ footer {
         border: 0;
         margin: 0 0 1rem 0;
     }
-
-    .item-actions {
-        width: 90%;
-    }
 }
 
 @media only screen and (max-width: 450px){
@@ -298,6 +294,10 @@ footer {
     .box {
         width: 90%;
         padding: .2rem;
+    }
+
+    form {
+        margin: .25rem;
     }
 
     .item-details, .item-actions {
