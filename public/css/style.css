@@ -314,6 +314,10 @@ footer {
     #priorityFilter, #priority, .todo-item, .item-details input {
         width: 80%;
     }
+
+    .item-actions {
+        width: 80%;
+    }
 }
 
 @media only screen and (max-width: 375px){
