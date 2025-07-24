@@ -16,6 +16,10 @@ body {
     align-items: center;
 }
 
+h1 {
+    font-size: 3rem;
+}
+
 h2{
     width: 25rem;
     color: #000;
@@ -43,7 +47,6 @@ h2{
     background-color: #a683e3;
     color: #ffffff;
     padding: 2rem 0;
-    font-size: 1.8rem;
 }
 
 .heading, #header {
@@ -127,7 +130,7 @@ h2{
 
 
 /* Allows paragraph to take available space */
-.item p {
+.item .todo-item {
     margin: 0 0.625rem 0 0;
     flex-grow: 1; 
 }
@@ -142,8 +145,7 @@ input[type="checkbox"]{
     width: 10%;
 }
 
-p {
-    /* padding: 1.25rem; */
+.todo-item {
     font-size: 1.25rem;
     font-weight: 200;
     color: #00204a;
@@ -296,6 +298,10 @@ footer {
         padding: .2rem;
     }
 
+    h1 {
+        font-size: 1.8rem;
+    }
+
     form {
         margin: .25rem;
     }
@@ -312,7 +318,12 @@ footer {
     }
 
     #priorityFilter, #priority, .todo-item, .item-details input {
-        width: 80%;
+        width: 90%;
+    }
+
+    .item-priority {
+        text-align: center;
+        width: 99%;
     }
 
     .item-actions {
