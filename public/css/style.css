@@ -300,18 +300,18 @@ footer {
         padding: .2rem;
     }
 
-    .item-details {
+    .item-details, .item-actions {
         flex-direction: column;
         justify-content: center;
         align-items: center;
     }
 
-    .item-actions {
-        width: 90%;
-        flex-direction: column;
+    .todo-item {
+        text-align: center;
+        width: 80%;
     }
 
-    #priorityFilter, #priority {
+    #priorityFilter, #priority, .todo-item, .item-details input {
         width: 80%;
     }
 }
